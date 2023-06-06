@@ -1,16 +1,16 @@
 ﻿using System;
 
-namespace Business
+namespace Business.Configs
 {
     [Serializable] public class BusinessConfig
     {
-        public string name;
+        public string name = "Business";
         public int startLevel = 0;
         public float earnTime;
         public int startEarnCount;
         public int levelUpCost;
 
-        public UpgradeConfig firstUpgradeConfig;
-        public UpgradeConfig secondUpgradeConfig;
+        public UpgradeConfig upgrade1Config = new UpgradeConfig() {name = "Upgrade 1"};
+        public UpgradeConfig upgrade2Config = new UpgradeConfig() {name = "Upgrade 2"};
     }
 }

@@ -19,11 +19,11 @@ MonoBehaviour:
     earnTime: 3
     startEarnCount: 3
     levelUpCost: 3
-    firstUpgradeConfig:
+    upgrade1Config:
       name: Upgrade 1
       buyCost: 50
       earnMultiplier: 50
-    secondUpgradeConfig:
+    upgrade2Config:
       name: Upgrade 2
       buyCost: 400
       earnMultiplier: 100
@@ -32,11 +32,11 @@ MonoBehaviour:
     earnTime: 6
     startEarnCount: 40
     levelUpCost: 40
-    firstUpgradeConfig:
+    upgrade1Config:
       name: Upgrade 1
       buyCost: 1200
       earnMultiplier: 100
-    secondUpgradeConfig:
+    upgrade2Config:
       name: Upgrade 2
       buyCost: 4000
       earnMultiplier: 200
@@ -45,11 +45,11 @@ MonoBehaviour:
     earnTime: 10
     startEarnCount: 200
     levelUpCost: 200
-    firstUpgradeConfig:
+    upgrade1Config:
       name: Upgrade 1
       buyCost: 6000
       earnMultiplier: 100
-    secondUpgradeConfig:
+    upgrade2Config:
       name: Upgrade 2
       buyCost: 20000
       earnMultiplier: 150
@@ -58,11 +58,11 @@ MonoBehaviour:
     earnTime: 17
     startEarnCount: 1000
     levelUpCost: 1000
-    firstUpgradeConfig:
+    upgrade1Config:
       name: Upgrade 1
       buyCost: 15000
       earnMultiplier: 100
-    secondUpgradeConfig:
+    upgrade2Config:
       name: Upgrade 2
       buyCost: 50000
       earnMultiplier: 200
@@ -71,11 +71,11 @@ MonoBehaviour:
     earnTime: 30
     startEarnCount: 5000
     levelUpCost: 5000
-    firstUpgradeConfig:
+    upgrade1Config:
       name: Upgrade 1
       buyCost: 100000
       earnMultiplier: 200
-    secondUpgradeConfig:
+    upgrade2Config:
       name: Upgrade 2
       buyCost: 500000
       earnMultiplier: 400

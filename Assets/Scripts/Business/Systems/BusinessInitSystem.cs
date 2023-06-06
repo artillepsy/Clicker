@@ -1,4 +1,5 @@
 ﻿using Business.Components;
+using Business.Configs;
 using Business.Flags;
 using Business.SceneData;
 using Core.Constants;
@@ -26,11 +27,18 @@ namespace Business.Systems
         {
             var display = Object.Instantiate(_businessesConfig.businessDisplayPrefab, _businessCanvas.businessParent);
             var entity = _world.NewEntity();
-            ref var upgradeContainer = ref entity.Get<UpgradeContainer>(); 
+            ref var upgradeContainer = ref entity.Get<UpgradeContainer>();
+
+            upgradeContainer.upgradeEntity1 = InitializeUpgrade(ref entity, display.upgrade1Display, businessConfig.upgrade1Config);
+            upgradeContainer.upgradeEntity2 = InitializeUpgrade(ref entity, display.upgrade2Display, businessConfig.upgrade2Config);
+            
+            Utils.UpdateUpgradeButtonInteractable(
+                ref upgradeContainer.upgradeEntity1.Get<Upgrade>(), ref entity.Get<BusinessLevel>());
+            
+            Utils.UpdateUpgradeButtonInteractable(
+                ref upgradeContainer.upgradeEntity2.Get<Upgrade>(), ref entity.Get<BusinessLevel>());
             
             InitializeBusinessDisplay(entity, display, businessConfig, businessCurrentIndex, businessAmount);
-            upgradeContainer.upgrade1 = InitializeBusinessUpgrade(display.firstUpgradeDisplay, businessConfig.firstUpgradeConfig);
-            upgradeContainer.upgrade2 = InitializeBusinessUpgrade(display.secondUpgradeDisplay, businessConfig.secondUpgradeConfig);
         }
 
         private void InitializeBusinessDisplay(EcsEntity entity, BusinessDisplay display, BusinessConfig businessConfig, int currentIndex, int amount)
@@ -56,31 +64,30 @@ namespace Business.Systems
 
             earn.earnLabel = display.earnCounterLabel;
             earn.startEarn = businessConfig.startEarnCount;
-            earn.earnLabel.text = $"{earn.earn.ToString()}$";
+            Utils.UpdateEarn(ref entity, ref earn, ref businessLevel);
 
             levelUp.levelCostLabel = display.levelUpCostLabel;
-            levelUp.startCost = businessConfig.levelUpCost;
-            levelUp.levelCostLabel.text = $"{levelUp.cost.ToString()}$";
             levelUp.levelUpButton = display.levelUpButton;
-            
+            levelUp.startCost = businessConfig.levelUpCost;
+            Utils.UpdateLevelCost(ref levelUp, businessLevel.level);
+
             earnProgressBar.fillImage = display.progressBarImage;
             earnProgressBar.fillImage.fillAmount = earnTimer.currentTime / earnTimer.earnTime;
 
-            earn.earn = Utils.GetEarn(businessLevel.level, earn.startEarn, x, yy);
-            levelUp.cost = Utils.GetLevelCost(businessLevel.level, levelUp.startCost);
-            
+
             if (businessConfig.startLevel > 0)
             {
                 entity.Get<PurchasedMarker>();
             }
         }
 
-        private EcsEntity InitializeBusinessUpgrade(UpgradeDisplay display, UpgradeConfig upgradeConfig)
+        private EcsEntity InitializeUpgrade(ref EcsEntity entity, UpgradeDisplay display, UpgradeConfig upgradeConfig)
         {
             var upgradeEntity = _world.NewEntity();
             ref var upgrade = ref upgradeEntity.Get<Upgrade>();
 
             display.nameLabel.text = upgradeConfig.name;
+            upgrade.businessEntity = entity;
             
             upgrade.earnMultiplierLabel = display.earnLabel;
             upgrade.upgradeButton = display.upgradeButton;

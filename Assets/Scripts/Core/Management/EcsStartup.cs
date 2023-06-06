@@ -1,14 +1,14 @@
 ﻿using Balance.Configs;
-using Balance.Data;
+using Balance.SceneData;
 using Balance.Systems;
-using Business;
-using Business.Flags;
+using Business.Configs;
+using Business.Reactive;
 using Business.SceneData;
 using Business.Systems;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Core
+namespace Core.Management
 {
     public class EcsStartup : MonoBehaviour
     {
@@ -40,10 +40,12 @@ namespace Core
             _systems
                 .Add(new BalanceInitSystem())
                 .Add(new BusinessInitSystem())
-                .Add(new AssignListenerToLevelUpButtons())
+                .Add(new LevelUpButtonsInitSystem())
+                .Add(new UpgradeButtonsInitSystem())
                 .Add(new BusinessEarnSystem())
                 .Add(new UpdateLevelSystem())
                 .Add(new UpdateBalanceSystem())
+                .Add(new UpgradePurchaseSystem())
                 ;
         }
 
@@ -54,7 +56,7 @@ namespace Core
                 .Inject(balanceConfig)
                 .Inject(businessCanvas)
                 .Inject(businessesConfig)
-            ;
+                ;
             
             _systems.Init();
         }
@@ -63,7 +65,8 @@ namespace Core
         {
             _systems
                 .OneFrame<EarnedMoneyEvent>()
-                .OneFrame<LevelUpEvent>()
+                .OneFrame<LevelUpRequest>()
+                .OneFrame<PurchaseUpgradeRequest>()
                 ;
         }
 

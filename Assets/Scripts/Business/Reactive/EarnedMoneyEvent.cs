@@ -1,4 +1,4 @@
-﻿namespace Business.Flags
+﻿namespace Business.Reactive
 {
     public struct EarnedMoneyEvent
     {

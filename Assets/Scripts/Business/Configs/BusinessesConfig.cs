@@ -2,7 +2,7 @@
 using Business.SceneData;
 using UnityEngine;
 
-namespace Business
+namespace Business.Configs
 {
     [CreateAssetMenu]
     public class BusinessesConfig : ScriptableObject

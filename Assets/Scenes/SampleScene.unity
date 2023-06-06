@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431cc89d2d68479aa1578f95aa6e027d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScale: 3
   balanceCanvas: {fileID: 736615663}
   balanceConfig: {fileID: 11400000, guid: 226aa9fe2802050469ff212310230837, type: 2}
   businessCanvas: {fileID: 945313984}
@@ -433,8 +434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fcabf3d96944f8da7a1d1ea462c0402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefix: 'balance: '
-  postfix: $
   label: {fileID: 970070865}
 --- !u!1 &885192256
 GameObject:

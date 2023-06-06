@@ -1,13 +1,15 @@
 ﻿using Business.Components;
 using Business.Flags;
+using Business.Reactive;
+using Core.Utils;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Business.Systems
 {
-    public class AssignListenerToLevelUpButtons : IEcsInitSystem
+    public class LevelUpButtonsInitSystem : IEcsInitSystem
     {
-        private readonly EcsFilter<LevelUp> _businessesFilter = null;
+        private readonly EcsFilter<LevelUp, UpgradeContainer, BusinessLevel> _businessesFilter = null;
         private readonly EcsFilter<Balance.Components.Balance> _balanceFilter = null;
         
         public void Init()
@@ -15,6 +17,11 @@ namespace Business.Systems
             foreach (var i in _businessesFilter)
             {
                 ref var levelUp = ref _businessesFilter.Get1(i);
+                ref var upgradeContainer = ref _businessesFilter.Get2(i);
+                ref var businessLevel = ref _businessesFilter.Get3(i);
+                
+                Utils.UpdateUpgradeButtonInteractable(ref upgradeContainer.upgradeEntity1.Get<Upgrade>(), ref  businessLevel);
+                Utils.UpdateUpgradeButtonInteractable(ref upgradeContainer.upgradeEntity2.Get<Upgrade>(), ref  businessLevel);
                 levelUp.levelUpButton.onClick.AddListener(delegate { OnClickLevelUp(i); });
             }
         }
@@ -28,7 +35,7 @@ namespace Business.Systems
             {
                 return;
             }
-            _businessesFilter.GetEntity(i).Get<LevelUpEvent>();
+            _businessesFilter.GetEntity(i).Get<LevelUpRequest>();
             Debug.Log($"level up: {i}");
         }
     }

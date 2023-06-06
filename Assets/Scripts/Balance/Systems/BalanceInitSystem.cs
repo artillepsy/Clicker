@@ -1,5 +1,5 @@
 ﻿using Balance.Configs;
-using Balance.Data;
+using Balance.SceneData;
 using Leopotam.Ecs;
 
 namespace Balance.Systems

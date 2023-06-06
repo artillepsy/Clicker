@@ -15,7 +15,7 @@ namespace Business.SceneData
         public Image progressBarImage;
         public Button levelUpButton;
         [Space]
-        public UpgradeDisplay firstUpgradeDisplay;
-        public UpgradeDisplay secondUpgradeDisplay;
+        public UpgradeDisplay upgrade1Display;
+        public UpgradeDisplay upgrade2Display;
     }
 }
