@@ -2,6 +2,7 @@
 using Balance.Data;
 using Balance.Systems;
 using Business;
+using Business.Flags;
 using Business.SceneData;
 using Business.Systems;
 using Leopotam.Ecs;
@@ -11,6 +12,8 @@ namespace Core
 {
     public class EcsStartup : MonoBehaviour
     {
+        public float timeScale = 3f;
+        
         public BalanceCanvas balanceCanvas;
         public BalanceConfig balanceConfig;
         
@@ -22,6 +25,8 @@ namespace Core
 
         private void Start()
         {
+            Time.timeScale = timeScale;
+            
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
 
@@ -35,7 +40,9 @@ namespace Core
             _systems
                 .Add(new BalanceInitSystem())
                 .Add(new BusinessInitSystem())
+                .Add(new AssignListenerToLevelUpButtons())
                 .Add(new BusinessEarnSystem())
+                .Add(new UpdateLevelSystem())
                 .Add(new UpdateBalanceSystem())
                 ;
         }
@@ -48,12 +55,16 @@ namespace Core
                 .Inject(businessCanvas)
                 .Inject(businessesConfig)
             ;
+            
             _systems.Init();
         }
 
         private void AddOneFrames()
         {
-            
+            _systems
+                .OneFrame<EarnedMoneyEvent>()
+                .OneFrame<LevelUpEvent>()
+                ;
         }
 
         private void Update()

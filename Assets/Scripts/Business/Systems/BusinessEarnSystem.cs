@@ -29,8 +29,7 @@ namespace Business.Systems
                 foreach (var j in _balanceFilter)
                 {
                     ref var earnedEvent = ref _balanceFilter.GetEntity(j).Get<EarnedMoneyEvent>();
-                    earnedEvent.moneyToAdd = earn.earnCount;
-                    Debug.Log("Add earn money event");
+                    earnedEvent.moneyToAdd = earn.earn;
                 }
             }
         }

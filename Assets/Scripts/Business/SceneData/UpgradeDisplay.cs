@@ -6,9 +6,10 @@ namespace Business.SceneData
 {
     public class UpgradeDisplay : MonoBehaviour
     {
-        public Button upgradeButton;
         public TextMeshProUGUI costLabel;
         public TextMeshProUGUI earnLabel;
         public TextMeshProUGUI nameLabel;
+        [Space]
+        public Button upgradeButton;
     }
 }

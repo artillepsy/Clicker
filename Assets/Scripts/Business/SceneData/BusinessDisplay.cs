@@ -11,8 +11,10 @@ namespace Business.SceneData
         public TextMeshProUGUI levelCounterLabel;
         public TextMeshProUGUI earnCounterLabel;
         public TextMeshProUGUI levelUpCostLabel;
+        [Space]
         public Image progressBarImage;
-
+        public Button levelUpButton;
+        [Space]
         public UpgradeDisplay firstUpgradeDisplay;
         public UpgradeDisplay secondUpgradeDisplay;
     }

@@ -1165,10 +1165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993374cf9cf845e184154b51b67b21b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeButton: {fileID: 2526451330401830385}
   costLabel: {fileID: 340681223897462040}
   earnLabel: {fileID: 5384677962287587789}
   nameLabel: {fileID: 2526451328620507616}
+  upgradeButton: {fileID: 2526451330401830385}
 --- !u!1 &2526451330507151320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,6 +1274,7 @@ MonoBehaviour:
   earnCounterLabel: {fileID: 2526451330145360013}
   levelUpCostLabel: {fileID: 3973484321767301677}
   progressBarImage: {fileID: 2526451329594933332}
+  levelUpButton: {fileID: 2526451329732493994}
   firstUpgradeDisplay: {fileID: 7971978248042197829}
   secondUpgradeDisplay: {fileID: 2263211904753689912}
 --- !u!1 &2526451330557419475
@@ -1818,10 +1819,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993374cf9cf845e184154b51b67b21b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeButton: {fileID: 295271427943807991}
   costLabel: {fileID: 1540540122366006411}
   earnLabel: {fileID: 7172555834257139979}
   nameLabel: {fileID: 6864719539741498434}
+  upgradeButton: {fileID: 295271427943807991}
 --- !u!1 &3959422928660765029
 GameObject:
   m_ObjectHideFlags: 0

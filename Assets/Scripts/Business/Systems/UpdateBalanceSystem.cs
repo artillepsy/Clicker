@@ -1,4 +1,5 @@
 ﻿using Business.Flags;
+using Core.Constants;
 using Leopotam.Ecs;
 
 namespace Business.Systems
@@ -6,19 +7,14 @@ namespace Business.Systems
     public class UpdateBalanceSystem : IEcsRunSystem
     {
         private readonly EcsFilter<Balance.Components.Balance, EarnedMoneyEvent> _balanceFilter = null;
-        
+
         public void Run()
         {
-            foreach (var i in _balanceFilter)
-            {
-                ref var balance = ref _balanceFilter.Get1(i);
-                ref var earnedEvent = ref _balanceFilter.Get2(i);
-               
-                balance.moneyCount += earnedEvent.moneyToAdd;
-                balance.label.text = $"Balance: {balance.moneyCount}$";
-                
-                _balanceFilter.GetEntity(i).Del<EarnedMoneyEvent>();
-            }
+            ref var balance = ref _balanceFilter.Get1(0);
+            ref var earnedEvent = ref _balanceFilter.Get2(0);
+
+            balance.moneyCount += earnedEvent.moneyToAdd;
+            balance.label.text = Literals.GetBalanceLabel(balance.moneyCount);
         }
     }
 }
