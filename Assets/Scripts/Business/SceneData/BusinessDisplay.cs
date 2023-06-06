@@ -1,18 +1,19 @@
-﻿using Microsoft.Unity.VisualStudio.Editor;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Business.SceneData
 {
     public class BusinessDisplay : MonoBehaviour
     {
         public TextMeshProUGUI nameLabel;
+        public TextMeshProUGUI businessIndexLabel;
         public TextMeshProUGUI levelCounterLabel;
-        public TextMeshProUGUI earnLabel;
+        public TextMeshProUGUI earnCounterLabel;
         public TextMeshProUGUI levelUpCostLabel;
         public Image progressBarImage;
 
-        public UpgradeDisplay firstUpgrade;
-        public UpgradeDisplay secondUpgrade;
+        public UpgradeDisplay firstUpgradeDisplay;
+        public UpgradeDisplay secondUpgradeDisplay;
     }
 }

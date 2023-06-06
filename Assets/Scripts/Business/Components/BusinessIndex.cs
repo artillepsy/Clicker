@@ -2,7 +2,7 @@
 
 namespace Business.Components
 {
-    public struct BusinessName
+    public struct BusinessIndex
     {
         public TextMeshProUGUI label;
     }

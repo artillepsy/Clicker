@@ -2,7 +2,7 @@
 
 namespace Business
 {
-    [Serializable] public class Upgrade
+    [Serializable] public class UpgradeConfig
     {
         public string name;
         public int buyCost;

@@ -15,7 +15,7 @@ namespace Core
         public BalanceConfig balanceConfig;
         
         public BusinessCanvas businessCanvas;
-        public BusinessConfig businessConfig;
+        public BusinessesConfig businessesConfig;
         
         private EcsWorld _world;
         private EcsSystems _systems;
@@ -44,7 +44,7 @@ namespace Core
                 .Inject(balanceCanvas)
                 .Inject(balanceConfig)
                 .Inject(businessCanvas)
-                .Inject(businessConfig)
+                .Inject(businessesConfig)
             ;
             _systems.Init();
         }

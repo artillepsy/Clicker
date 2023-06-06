@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
-using Business.SceneData;
-using UnityEngine;
+﻿using System;
 
 namespace Business
 {
-    [CreateAssetMenu]
-    public class BusinessConfig : ScriptableObject
+    [Serializable] public class BusinessConfig
     {
-        public BusinessDisplay businessDisplayPrefab;
-        public List<Business> businesses;
+        public string name;
+        public int startLevel = 0;
+        public float earnTime;
+        public int startEarnCount;
+        public int levelUpCost;
+
+        public UpgradeConfig firstUpgradeConfig;
+        public UpgradeConfig secondUpgradeConfig;
     }
 }
