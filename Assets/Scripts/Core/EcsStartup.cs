@@ -35,6 +35,8 @@ namespace Core
             _systems
                 .Add(new BalanceInitSystem())
                 .Add(new BusinessInitSystem())
+                .Add(new BusinessEarnSystem())
+                .Add(new UpdateBalanceSystem())
                 ;
         }
 

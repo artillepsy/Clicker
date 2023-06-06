@@ -16,11 +16,9 @@ namespace Balance.Systems
             ref var balance = ref balanceEntity.Get<Components.Balance>();
 
             balance.label = _balanceCanvas.label;
-            balance.prefix = _balanceCanvas.prefix;
-            balance.postfix = _balanceCanvas.postfix;
             balance.moneyCount = _balanceConfig.startMoneyCount;
 
-            balance.label.text = $"{balance.prefix}{balance.moneyCount}{balance.postfix}";
+            balance.label.text = $"Balance: {balance.moneyCount}$";
         }
     }
 }

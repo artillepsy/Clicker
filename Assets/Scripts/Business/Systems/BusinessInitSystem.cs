@@ -59,7 +59,7 @@ namespace Business.Systems
             levelUp.levelCostLabel.text = $"{levelUp.costCount.ToString()}$";
             
             earnProgressBar.fillImage = display.progressBarImage;
-            earnProgressBar.fillImage.fillAmount = Mathf.Lerp(0, earnTimer.earnTime, earnTimer.currentTime);
+            earnProgressBar.fillImage.fillAmount = earnTimer.currentTime / earnTimer.earnTime;
             
             if (businessConfig.startLevel > 0)
             {
