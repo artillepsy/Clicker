@@ -8,22 +8,28 @@ namespace Business.Systems
 {
     public class UpgradePurchaseSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<UpgradeButton, PurchaseUpgradeRequest> _filter = null;
+        private readonly EcsFilter<UpgradeButton, PurchaseUpgradeRequest> _upgradesfilter = null;
+        private readonly EcsFilter<Balance.Components.Balance> _balanceFilter = null;
         
         public void Run()
         {
-            foreach (var i in _filter)
+            ref var balanceEntity = ref _balanceFilter.GetEntity(0);
+            ref var balance = ref balanceEntity.Get<Balance.Components.Balance>();
+            
+            foreach (var i in _upgradesfilter)
             {
                 PurchaseUpgrade(i);
+                ReduceMoney(ref balance, i);
                 UpdateEarn(i);
-                
             }
+
+            balanceEntity.Get<MoneyChangedEvent>();
         }
 
         private void PurchaseUpgrade(int i)
         {
-            ref var upgradeEntity = ref _filter.GetEntity(i);
-            ref var upgrade = ref _filter.Get1(i);
+            ref var upgradeEntity = ref _upgradesfilter.GetEntity(i);
+            ref var upgrade = ref _upgradesfilter.Get1(i);
             
             upgradeEntity.Del<PurchaseUpgradeRequest>();
             upgradeEntity.Get<PurchasedMarker>();
@@ -32,11 +38,18 @@ namespace Business.Systems
             upgrade.button.onClick.RemoveAllListeners();
             upgrade.button.interactable = false;
         }
+        
+        private void ReduceMoney(ref Balance.Components.Balance balance, int i)
+        {
+            ref var upgrade = ref _upgradesfilter.Get1(i);
+            balance.moneyCount -= upgrade.cost;
+            balance.label.text = Literals.GetBalanceLabel(balance.moneyCount);
+        }
 
         private void UpdateEarn(int i)
         {
-            ref var entity = ref _filter.Get1(i).businessEntity;
-            Utils.CalculationUtils.UpdateEarn(ref entity, ref entity.Get<Earn>(), ref entity.Get<BusinessLevel>());
+            ref var entity = ref _upgradesfilter.Get1(i).businessEntity;
+            Utils.Calculation.UpdateEarn(ref entity, ref entity.Get<Earn>(), ref entity.Get<BusinessLevel>());
         }
     }
 }

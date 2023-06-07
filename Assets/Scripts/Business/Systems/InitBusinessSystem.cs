@@ -77,7 +77,7 @@ namespace Business.Systems
             businessLevel.label = display.levelCounterLabel;
             businessLevel.level = data.level;
             businessLevel.label.text = businessLevel.level.ToString();
-
+           
             display.nameLabel.text = businessConfig.name;
 
             earnTimer.currentTime = data.earnCurrentTime;
@@ -85,17 +85,17 @@ namespace Business.Systems
 
             earn.earnLabel = display.earnCounterLabel;
             earn.startEarn = businessConfig.startEarnCount;
-            Utils.CalculationUtils.UpdateEarn(ref entity, ref earn, ref businessLevel);
+            Utils.Calculation.UpdateEarn(ref entity, ref earn, ref businessLevel);
 
             levelUp.levelCostLabel = display.levelUpCostLabel;
             levelUp.button = display.levelUpButton;
             levelUp.startCost = businessConfig.levelUpCost;
-            Utils.CalculationUtils.UpdateLevelCost(ref levelUp, businessLevel.level);
+            Utils.Calculation.UpdateLevelCost(ref levelUp, businessLevel.level);
 
             earnProgressBar.fillImage = display.progressBarImage;
             earnProgressBar.fillImage.fillAmount = earnTimer.currentTime / earnTimer.earnTime;
-
-            if (businessConfig.startLevel > 0)
+            
+            if (data.level > 0)
             {
                 entity.Get<PurchasedMarker>();
             }
@@ -106,11 +106,7 @@ namespace Business.Systems
         {
             var upgradeEntity = _world.NewEntity();
             ref var upgrade = ref upgradeEntity.Get<UpgradeButton>();
-
-            if (data.purchased)
-            {
-                upgradeEntity.Get<PurchasedMarker>();
-            }
+           
             display.nameLabel.text = upgradeConfig.name;
             
             upgrade.index = index;
@@ -121,11 +117,20 @@ namespace Business.Systems
             upgrade.costLabel = display.costLabel;
             
             upgrade.cost = upgradeConfig.buyCost;
-            upgrade.costLabel.text = Literals.GetCostLabel(upgrade.cost);
 
             upgrade.earnMultiplier = upgradeConfig.earnMultiplier;
             upgrade.earnMultiplierLabel.text = Literals.GetEarnMultiplierLabel(upgrade.earnMultiplier);
-
+            
+            if (data.purchased)
+            {
+                upgradeEntity.Get<PurchasedMarker>();
+                upgrade.button.interactable = false;
+                upgrade.costLabel.text = Literals.GetPurchasedLabel();
+            }
+            else
+            {
+                upgrade.costLabel.text = Literals.GetCostLabel(upgrade.cost);
+            }
             return upgradeEntity;
         }
     }

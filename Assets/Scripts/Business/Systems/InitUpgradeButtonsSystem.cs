@@ -15,11 +15,11 @@ namespace Business.Systems
             foreach (var i in _upgradesFilter)
             {
                 ref var upgrade = ref _upgradesFilter.Get1(i);
-                upgrade.button.onClick.AddListener(delegate { OnClickLevelUp(i); });
+                upgrade.button.onClick.AddListener(delegate { OnClickPurchaseUpgrade(i); });
             }
         }
 
-        private void OnClickLevelUp(int i)
+        private void OnClickPurchaseUpgrade(int i)
         {
             ref var balance = ref _balanceFilter.Get1(0);
             ref var upgrade = ref _upgradesFilter.Get1(i);

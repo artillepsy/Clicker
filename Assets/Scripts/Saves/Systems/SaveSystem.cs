@@ -27,11 +27,7 @@ namespace Saves.Systems
             _focusCatcher.OnApplicationUnfocused -= OnUnfocused;
         }
 
-        private void OnUnfocused()
-        {
-          UpdateSaveData();
-          Debug.Log("Save data imitation");
-        }
+        private void OnUnfocused() => UpdateSaveData();
 
         private void UpdateSaveData()
         {

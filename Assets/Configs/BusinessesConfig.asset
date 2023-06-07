@@ -21,57 +21,57 @@ MonoBehaviour:
     startEarnCount: 3
     levelUpCost: 3
     upgradeConfigs:
-    - name: Upgrade
-      buyCost: 0
-      earnMultiplier: 0
-    - name: Upgrade
-      buyCost: 0
-      earnMultiplier: 0
+    - name: Upgrade 1
+      buyCost: 50
+      earnMultiplier: 50
+    - name: Upgrade 2
+      buyCost: 400
+      earnMultiplier: 100
   - name: Business 2
     startLevel: 0
     earnTime: 6
     startEarnCount: 40
     levelUpCost: 40
     upgradeConfigs:
-    - name: Upgrade
-      buyCost: 0
-      earnMultiplier: 0
-    - name: Upgrade
-      buyCost: 0
-      earnMultiplier: 0
+    - name: Upgrade 1
+      buyCost: 1200
+      earnMultiplier: 100
+    - name: Upgrade 2
+      buyCost: 4000
+      earnMultiplier: 200
   - name: Business 3
     startLevel: 0
     earnTime: 10
     startEarnCount: 200
     levelUpCost: 200
     upgradeConfigs:
-    - name: Upgrade
-      buyCost: 0
-      earnMultiplier: 0
-    - name: Upgrade
-      buyCost: 0
-      earnMultiplier: 0
+    - name: Upgrade 1
+      buyCost: 6000
+      earnMultiplier: 100
+    - name: Upgrade 2
+      buyCost: 20000
+      earnMultiplier: 150
   - name: Business 4
     startLevel: 0
     earnTime: 17
     startEarnCount: 1000
     levelUpCost: 1000
     upgradeConfigs:
-    - name: Upgrade
-      buyCost: 0
-      earnMultiplier: 0
-    - name: Upgrade
-      buyCost: 0
-      earnMultiplier: 0
+    - name: Upgrade 1
+      buyCost: 15000
+      earnMultiplier: 100
+    - name: Upgrade 2
+      buyCost: 50000
+      earnMultiplier: 200
   - name: Business 5
     startLevel: 0
     earnTime: 30
     startEarnCount: 5000
     levelUpCost: 5000
     upgradeConfigs:
-    - name: Upgrade
-      buyCost: 0
-      earnMultiplier: 0
-    - name: Upgrade
-      buyCost: 0
-      earnMultiplier: 0
+    - name: Upgrade 1
+      buyCost: 100000
+      earnMultiplier: 200
+    - name: Upgrade 2
+      buyCost: 50000
+      earnMultiplier: 400

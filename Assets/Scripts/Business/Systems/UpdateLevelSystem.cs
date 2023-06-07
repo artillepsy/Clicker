@@ -8,7 +8,7 @@ namespace Business.Systems
 {
     public class UpdateLevelSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<BusinessLevel, LevelUpButton, Earn, UpgradesContainer, LevelUpRequest> _businessesFilter = null;
+        private readonly EcsFilter<BusinessLevel, LevelUpButton, Earn, LevelUpRequest> _businessesFilter = null;
         private readonly EcsFilter<Balance.Components.Balance> _balanceFilter = null;
 
         public void Run()
@@ -18,19 +18,19 @@ namespace Business.Systems
                 ref var businessLevel = ref _businessesFilter.Get1(i);
                 ref var levelUp = ref _businessesFilter.Get2(i);
                 ref var earn = ref _businessesFilter.Get3(i);
-                ref var upgradeContainer = ref _businessesFilter.Get4(i);
                 ref var entity = ref _businessesFilter.GetEntity(i);
                 ref var balance = ref _balanceFilter.Get1(0);
 
-                if (businessLevel.level == 0)
+                if (!entity.Has<PurchasedMarker>())
                 {
                     entity.Get<PurchasedMarker>();
                 }
-
                 ReduceMoney(ref balance, ref levelUp);
                 IncrementLevel(ref businessLevel);
-                Utils.CalculationUtils.UpdateEarn(ref entity, ref earn, ref businessLevel);
-                Utils.CalculationUtils.UpdateLevelCost(ref levelUp, businessLevel.level);
+                Utils.Calculation.UpdateEarn(ref entity, ref earn, ref businessLevel);
+                Utils.Calculation.UpdateLevelCost(ref levelUp, businessLevel.level);
+                
+                _balanceFilter.GetEntity(0).Get<MoneyChangedEvent>();
             }
         }
 

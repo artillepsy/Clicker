@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Business.Utils
 {
-    public static class CalculationUtils
+    public static class Calculation
     {
         public static void UpdateLevelCost(ref LevelUpButton levelUpButton, int level)
         {

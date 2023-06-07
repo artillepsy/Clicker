@@ -50,6 +50,7 @@ namespace Management
                 .Add(new UpdateLevelSystem())
                 .Add(new UpdateBalanceSystem())
                 .Add(new UpgradePurchaseSystem())
+                .Add(new UpdateButtonsSystem())
                 .Add(new SaveSystem())
                 ;
         }
@@ -73,6 +74,7 @@ namespace Management
                 .OneFrame<EarnedMoneyEvent>()
                 .OneFrame<LevelUpRequest>()
                 .OneFrame<PurchaseUpgradeRequest>()
+                .OneFrame<MoneyChangedEvent>()
                 ;
         }
 

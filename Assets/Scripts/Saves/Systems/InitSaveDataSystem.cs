@@ -15,14 +15,15 @@ namespace Saves.Systems
 
         public void Init()
         {
-            var data = SaveLoadUtils.Load<GameStateSaveData>(out var success, Literals.SaveFileName);
+            var saveEntity = _world.NewEntity();
+            ref var data = ref saveEntity.Get<GameStateSaveData>();
+            data = SaveLoadUtils.Load<GameStateSaveData>(out var success, Literals.SaveFileName);
 
             if (!success)
             {
                 InitSaveData(ref data);
             }
-            var saveEntity = _world.NewEntity();
-            saveEntity.Get<GameStateSaveData>();
+            
         }
 
         private void InitSaveData(ref GameStateSaveData data)

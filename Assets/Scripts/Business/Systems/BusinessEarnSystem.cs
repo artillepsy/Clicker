@@ -22,7 +22,7 @@ namespace Business.Systems
                 timer.currentTime += Time.deltaTime;
                 progressBar.fillImage.fillAmount = timer.currentTime / timer.earnTime;
                 
-                if (!(timer.currentTime >= timer.earnTime)) continue;
+                if (timer.currentTime < timer.earnTime) continue;
 
                 progressBar.fillImage.fillAmount = 0f;
                 timer.currentTime = 0f;
