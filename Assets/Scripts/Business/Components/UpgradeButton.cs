@@ -6,6 +6,7 @@ namespace Business.Components
 {
     public struct UpgradeButton
     {
+        public int index;
         public EcsEntity businessEntity;
         
         public TextMeshProUGUI costLabel;

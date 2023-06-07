@@ -20,7 +20,7 @@ namespace Business.Systems
             
             for (int i = 0; i < businessCount; i++)
             {
-                SpawnBusinessInstance(_businessesConfig.businesses[i], i+1, businessCount);
+                SpawnBusinessInstance(_businessesConfig.businesses[i], i, businessCount);
             }
         }
 
@@ -37,7 +37,7 @@ namespace Business.Systems
             BusinessDisplay display)
         {
             var upgradesCount = businessConfig.upgradeConfigs.Length;
-            ref var upgradeContainer = ref entity.Get<UpgradeContainer>();
+            ref var upgradeContainer = ref entity.Get<UpgradesContainer>();
             upgradeContainer.upgradeEntities = new EcsEntity[upgradesCount];
             
             foreach (Transform child in display.upgradesParent)
@@ -51,7 +51,7 @@ namespace Business.Systems
                 var upgradeDisplay = Object.Instantiate(_businessesConfig.upgradeDisplayPrefab, display.upgradesParent);
 
                 upgradeContainer.upgradeEntities[i]
-                    = InitializeUpgrade(ref entity, upgradeDisplay, upgradeConfig);
+                    = InitializeUpgrade(ref entity, upgradeDisplay, upgradeConfig, i);
             }
         }
 
@@ -69,8 +69,9 @@ namespace Business.Systems
             businessLevel.level = businessConfig.startLevel;
             businessLevel.label.text = businessLevel.level.ToString();
 
+            businessIndex.index = currentIndex;
             businessIndex.label = display.businessIndexLabel;
-            businessIndex.label.text = $"{currentIndex}/{amount}";
+            businessIndex.label.text = $"{currentIndex + 1}/{amount}";
 
             display.nameLabel.text = businessConfig.name;
 
@@ -95,12 +96,15 @@ namespace Business.Systems
             }
         }
 
-        private EcsEntity InitializeUpgrade(ref EcsEntity entity, UpgradeDisplay display, UpgradeConfig upgradeConfig)
+        private EcsEntity InitializeUpgrade(ref EcsEntity entity, UpgradeDisplay display, 
+            UpgradeConfig upgradeConfig, int index)
         {
             var upgradeEntity = _world.NewEntity();
             ref var upgrade = ref upgradeEntity.Get<UpgradeButton>();
 
             display.nameLabel.text = upgradeConfig.name;
+            
+            upgrade.index = index;
             upgrade.businessEntity = entity;
             
             upgrade.earnMultiplierLabel = display.earnLabel;

@@ -16,15 +16,15 @@ namespace Business.Utils
 
         public static void UpdateEarn(ref EcsEntity entity, ref Earn earn, ref BusinessLevel businessLevel)
         {
-            earn.earn = CalculateEarn(businessLevel.level, earn.startEarn, ref entity.Get<UpgradeContainer>());
+            earn.earn = CalculateEarn(businessLevel.level, earn.startEarn, ref entity.Get<UpgradesContainer>());
             earn.earnLabel.text = Literals.GetPriceLabel(earn.earn);
         }
 
-        private static int CalculateEarn(int level, int startEarn, ref UpgradeContainer upgradeContainer)
+        private static int CalculateEarn(int level, int startEarn, ref UpgradesContainer upgradesContainer)
         {
             var totalMult = 1f;
             
-            foreach (var entity in upgradeContainer.upgradeEntities)
+            foreach (var entity in upgradesContainer.upgradeEntities)
             {
                 if (!entity.Has<PurchasedMarker>()) continue;
                 totalMult += entity.Get<UpgradeButton>().earnMultiplier / 100f;

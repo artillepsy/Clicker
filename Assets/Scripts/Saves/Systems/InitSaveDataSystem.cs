@@ -39,9 +39,16 @@ namespace Saves.Systems
                 var businessConfig = _businessesConfig.businesses[i];
                 var upgradesLength = businessConfig.upgradeConfigs.Length;
 
+                businessData.index = i;
                 businessData.level = businessConfig.startLevel;
-                businessData.earnFillAmount = 0f;
-                businessData.upgradesPurchases = Enumerable.Repeat(false, upgradesLength).ToArray();
+                businessData.earnCurrentTime = 0f;
+                businessData.upgrades = new UpgradeSaveData[upgradesLength];
+
+                for (int j = 0; j < upgradesLength; j++)
+                {
+                    businessData.upgrades[j].index = j;
+                    businessData.upgrades[j].purchased = false;
+                }
             }
         }
     }

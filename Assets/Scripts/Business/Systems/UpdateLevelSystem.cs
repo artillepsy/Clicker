@@ -8,7 +8,7 @@ namespace Business.Systems
 {
     public class UpdateLevelSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<BusinessLevel, LevelUpButton, Earn, UpgradeContainer, LevelUpRequest> _businessesFilter = null;
+        private readonly EcsFilter<BusinessLevel, LevelUpButton, Earn, UpgradesContainer, LevelUpRequest> _businessesFilter = null;
         private readonly EcsFilter<Balance.Components.Balance> _balanceFilter = null;
 
         public void Run()

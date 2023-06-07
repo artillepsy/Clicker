@@ -5,8 +5,9 @@ namespace Saves.Components
     [Serializable]
     public struct BusinessSaveData
     {
+        public int index;
         public int level;
-        public float earnFillAmount;
-        public bool[] upgradesPurchases;
+        public float earnCurrentTime;
+        public UpgradeSaveData[] upgrades;
     }
 }

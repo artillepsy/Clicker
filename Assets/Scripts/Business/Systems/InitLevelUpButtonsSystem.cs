@@ -7,7 +7,7 @@ namespace Business.Systems
 {
     public class InitLevelUpButtonsSystem : IEcsInitSystem
     {
-        private readonly EcsFilter<LevelUpButton, UpgradeContainer, BusinessLevel> _businessesFilter = null;
+        private readonly EcsFilter<LevelUpButton, UpgradesContainer, BusinessLevel> _businessesFilter = null;
         private readonly EcsFilter<Balance.Components.Balance> _balanceFilter = null;
         
         public void Init()

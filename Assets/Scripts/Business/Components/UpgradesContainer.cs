@@ -2,7 +2,7 @@
 
 namespace Business.Components
 {
-    public struct UpgradeContainer
+    public struct UpgradesContainer
     {
         public EcsEntity[] upgradeEntities;
     }
