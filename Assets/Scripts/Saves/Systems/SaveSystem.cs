@@ -1,12 +1,10 @@
-﻿using System.Linq;
-using Business.Components;
+﻿using Business.Components;
 using Business.Flags;
 using Constants;
 using Leopotam.Ecs;
 using Saves.Components;
 using Saves.SceneData;
 using Saves.Utils;
-using UnityEngine;
 
 namespace Saves.Systems
 {
@@ -14,6 +12,7 @@ namespace Saves.Systems
     {
         private readonly ApplicationFocusCatcher _focusCatcher = null;
         private readonly EcsFilter<GameStateSaveData> _saveDataFilter = null;
+        private readonly EcsFilter<TimeScale.Components.TimeScale> _timeScaleFilter = null;
         private readonly EcsFilter<Balance.Components.Balance> _balanceFilter = null;
         private readonly EcsFilter<BusinessLevel, EarnTimer, UpgradesContainer, BusinessIndex> _businessesfilter = null;
         
@@ -32,9 +31,11 @@ namespace Saves.Systems
         private void UpdateSaveData()
         {
             ref var data = ref _saveDataFilter.Get1(0);
+            var timeScale = _timeScaleFilter.Get1(0);
             var balance = _balanceFilter.Get1(0);
 
             data.moneyCount = balance.moneyCount;
+            data.timeScale = timeScale.value;
             
             foreach (var i in _businessesfilter)
             {

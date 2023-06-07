@@ -8,6 +8,9 @@ using Business.Systems;
 using Leopotam.Ecs;
 using Saves.SceneData;
 using Saves.Systems;
+using TimeScale.Configs;
+using TimeScale.SceneData;
+using TimeScale.Systems;
 using UnityEngine;
 
 namespace Management
@@ -22,14 +25,19 @@ namespace Management
         
         public BusinessCanvas businessCanvas;
         public BusinessesConfig businessesConfig;
+       
+        public TimeScaleConfig timeScaleConfig;
+        public TimeScaleCanvas timeScaleCanvas;
         
         private EcsWorld _world;
         private EcsSystems _systems;
 
         private void Start()
         {
-            Time.timeScale = timeScale;
-            
+            if (Application.isEditor)
+            {
+                Time.timeScale = timeScale;
+            }
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
 
@@ -42,6 +50,7 @@ namespace Management
         {
             _systems
                 .Add(new InitSaveDataSystem())
+                .Add(new InitTimeScaleSystem())
                 .Add(new InitBalanceSystem())
                 .Add(new InitBusinessSystem())
                 .Add(new InitLevelUpButtonsSystem())
@@ -62,6 +71,8 @@ namespace Management
                 .Inject(balanceConfig)
                 .Inject(businessCanvas)
                 .Inject(businessesConfig)
+                .Inject(timeScaleConfig)
+                .Inject(timeScaleCanvas)
                 .Inject(focusCatcher)
                 ;
             

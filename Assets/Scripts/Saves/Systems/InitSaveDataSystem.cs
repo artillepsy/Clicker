@@ -4,6 +4,7 @@ using Constants;
 using Leopotam.Ecs;
 using Saves.Components;
 using Saves.Utils;
+using TimeScale.Configs;
 
 namespace Saves.Systems
 {
@@ -12,6 +13,8 @@ namespace Saves.Systems
         private readonly EcsWorld _world = null;
         private readonly BusinessesConfig _businessesConfig = null;
         private readonly BalanceConfig _balanceConfig = null;
+        private readonly TimeScaleConfig _timeScaleConfig = null;
+
 
         public void Init()
         {
@@ -32,6 +35,7 @@ namespace Saves.Systems
             
             data.businesses = new BusinessSaveData[businessCount];
             data.moneyCount = _balanceConfig.startMoneyCount;
+            data.timeScale = _timeScaleConfig.timeScale;
             
             for (int i = 0; i < businessCount; i++)
             {
