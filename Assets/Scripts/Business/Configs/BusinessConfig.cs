@@ -11,9 +11,9 @@ namespace Business.Configs
         /// Time for earn money
         public float earnTime;
         /// How much money will player get during one eran tick
-        public int startEarnCount;
+        public ulong startEarnCount;
         /// Start level up cost
-        public int levelUpCost;
+        public ulong levelUpCost;
 
         /// All upgrades relative to current business entity
         public UpgradeConfig[] upgradeConfigs = new UpgradeConfig[2];

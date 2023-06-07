@@ -14,6 +14,10 @@ namespace Business.Systems
             ref var balance = ref _balanceFilter.Get1(0);
             ref var earnedEvent = ref _balanceFilter.Get2(0);
 
+            if (balance.moneyCount >= ulong.MaxValue - earnedEvent.moneyToAdd)
+            {
+                return;
+            }
             balance.moneyCount += earnedEvent.moneyToAdd;
             balance.label.text = Literals.GetBalanceLabel(balance.moneyCount);
         }

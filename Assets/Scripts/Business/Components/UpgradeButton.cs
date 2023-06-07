@@ -21,6 +21,6 @@ namespace Business.Components
         public Button button;
         
         public int earnMultiplier;
-        public int cost;
+        public ulong cost;
     }
 }

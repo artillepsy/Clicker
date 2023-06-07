@@ -11,8 +11,8 @@ namespace Business.Components
         /// Displays current levelUp cost
         public TextMeshProUGUI levelCostLabel;
         /// Current cost value
-        public int cost;
+        public ulong cost;
         /// Start cost value. Sets from config
-        public int startCost;
+        public ulong startCost;
     }
 }

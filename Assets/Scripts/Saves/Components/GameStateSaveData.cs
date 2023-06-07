@@ -7,7 +7,7 @@ namespace Saves.Components
     public struct GameStateSaveData
     {
         public int timeScale;
-        public int moneyCount;
+        public ulong moneyCount;
         public BusinessSaveData[] businesses;
     }
 }

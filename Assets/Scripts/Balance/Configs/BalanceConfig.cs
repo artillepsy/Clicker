@@ -7,6 +7,6 @@ namespace Balance.Configs
     public class BalanceConfig : ScriptableObject
     {
         /// This value sets to player's balance only at start of the game 
-        public int startMoneyCount = 0;
+        public ulong startMoneyCount = 0;
     }
 }

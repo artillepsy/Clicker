@@ -7,6 +7,6 @@ namespace Balance.Components
     {
         /// Displays current money count
         public TextMeshProUGUI label;
-        public int moneyCount;
+        public ulong moneyCount;
     }
 }

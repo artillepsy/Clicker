@@ -7,7 +7,7 @@ namespace Business.Configs
     public class UpgradeConfig
     {
         public string name = "Upgrade";
-        public int buyCost;
+        public ulong buyCost;
         public int earnMultiplier;
     }
 }

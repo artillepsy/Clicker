@@ -8,8 +8,8 @@ namespace Business.Components
         /// label which displays current earn value
         public TextMeshProUGUI earnLabel;
         /// Current earn amount
-        public int earn;
+        public ulong earn;
         /// Earn amount from config. Doesn't change
-        public int startEarn;
+        public ulong startEarn;
     }
 }
