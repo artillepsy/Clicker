@@ -15,29 +15,26 @@ using UnityEngine;
 
 namespace Management
 {
+    /// Handles all systems and external references
     public class EcsStartup : MonoBehaviour
     {
-        public float timeScale = 3f;
-
-        public ApplicationFocusCatcher focusCatcher;        
+        public ApplicationFocusCatcher focusCatcher;    
+        [Space]
         public BalanceCanvas balanceCanvas;
         public BalanceConfig balanceConfig;
-        
+        [Space]
         public BusinessCanvas businessCanvas;
         public BusinessesConfig businessesConfig;
-       
-        public TimeScaleConfig timeScaleConfig;
+        [Space]
         public TimeScaleCanvas timeScaleCanvas;
-        
+        public TimeScaleConfig timeScaleConfig;
+
         private EcsWorld _world;
         private EcsSystems _systems;
 
+        /// Initializes world and entities
         private void Start()
         {
-            if (Application.isEditor)
-            {
-                Time.timeScale = timeScale;
-            }
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
 
@@ -46,10 +43,11 @@ namespace Management
             InitializeSystems();
         }
 
+        /// Initializes systems with order
         private void AddSystems()
         {
             _systems
-                .Add(new InitSaveDataSystem())
+                .Add(new InitSaveDataLoadSystem())
                 .Add(new InitTimeScaleSystem())
                 .Add(new InitBalanceSystem())
                 .Add(new InitBusinessSystem())
@@ -64,6 +62,7 @@ namespace Management
                 ;
         }
 
+        /// Injects variables to the systems
         private void InitializeSystems()
         {
             _systems
@@ -79,6 +78,7 @@ namespace Management
             _systems.Init();
         }
 
+        /// Initializes oneFrame events and requests
         private void AddOneFrames()
         {
             _systems
@@ -89,11 +89,13 @@ namespace Management
                 ;
         }
 
+        /// Updates each system
         private void Update()
         {
             _systems.Run();
         }
 
+        /// Clears systems and world
         private void OnDestroy()
         {
             _systems?.Destroy();

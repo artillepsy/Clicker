@@ -1,10 +1,10 @@
 ﻿using Business.Components;
 using Business.Reactive;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Business.Systems
 {
+    /// Add listeners to OnClick events for upgrade buttons 
     public class InitUpgradeButtonsSystem : IEcsInitSystem
     {
         private readonly EcsFilter<UpgradeButton> _upgradesFilter = null;
@@ -19,6 +19,7 @@ namespace Business.Systems
             }
         }
 
+        /// Invokes after clicking Upgrade button
         private void OnClickPurchaseUpgrade(int i)
         {
             ref var balance = ref _balanceFilter.Get1(0);

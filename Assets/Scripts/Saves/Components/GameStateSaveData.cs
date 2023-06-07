@@ -2,6 +2,7 @@
 
 namespace Saves.Components
 {
+    /// Save data which contains all info about game state
     [Serializable]
     public struct GameStateSaveData
     {

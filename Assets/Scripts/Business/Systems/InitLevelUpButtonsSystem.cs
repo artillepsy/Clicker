@@ -1,13 +1,13 @@
 ﻿using Business.Components;
 using Business.Reactive;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Business.Systems
 {
+    /// Sets listeners to LevelUpButtons
     public class InitLevelUpButtonsSystem : IEcsInitSystem
     {
-        private readonly EcsFilter<LevelUpButton, UpgradesContainer, BusinessLevel> _businessesFilter = null;
+        private readonly EcsFilter<LevelUpButton, UpgradesContainer, Level> _businessesFilter = null;
         private readonly EcsFilter<Balance.Components.Balance> _balanceFilter = null;
         
         public void Init()
@@ -19,6 +19,7 @@ namespace Business.Systems
             }
         }
 
+        /// Method that invokes after clicking on level up
         private void OnClickLevelUp(int i)
         {
             ref var balance = ref _balanceFilter.Get1(0);
@@ -29,7 +30,6 @@ namespace Business.Systems
                 return;
             }
             _businessesFilter.GetEntity(i).Get<LevelUpRequest>();
-            Debug.Log($"level up: {i}");
         }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Business.Systems
 {
+    /// Updates info about earning process for each active business. Fills images every frame
     public class BusinessEarnSystem : IEcsRunSystem
     {
         private readonly EcsFilter<EarnTimer, EarnProgressBar, Earn, PurchasedMarker> _businessFilter = null;

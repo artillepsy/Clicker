@@ -1,11 +1,12 @@
 ﻿using Business.Components;
 using Business.Flags;
 using Business.Reactive;
-using Constants;
 using Leopotam.Ecs;
+using Utils;
 
 namespace Business.Systems
 {
+    /// Applies upgrade after it's bying and reduces player's money on balance
     public class UpgradePurchaseSystem : IEcsRunSystem
     {
         private readonly EcsFilter<UpgradeButton, PurchaseUpgradeRequest> _upgradesfilter = null;
@@ -49,7 +50,7 @@ namespace Business.Systems
         private void UpdateEarn(int i)
         {
             ref var entity = ref _upgradesfilter.Get1(i).businessEntity;
-            Utils.Calculation.UpdateEarn(ref entity, ref entity.Get<Earn>(), ref entity.Get<BusinessLevel>());
+            Utils.Calculation.UpdateEarn(ref entity, ref entity.Get<Earn>(), ref entity.Get<Level>());
         }
     }
 }

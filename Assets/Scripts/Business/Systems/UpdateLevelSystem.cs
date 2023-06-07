@@ -1,14 +1,15 @@
 ﻿using Business.Components;
 using Business.Flags;
 using Business.Reactive;
-using Constants;
 using Leopotam.Ecs;
+using Utils;
 
 namespace Business.Systems
 {
+    /// Increments level and reduces money on player's balance after recieving levelUpRequest.
     public class UpdateLevelSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<BusinessLevel, LevelUpButton, Earn, LevelUpRequest> _businessesFilter = null;
+        private readonly EcsFilter<Level, LevelUpButton, Earn, LevelUpRequest> _businessesFilter = null;
         private readonly EcsFilter<Balance.Components.Balance> _balanceFilter = null;
 
         public void Run()
@@ -34,10 +35,10 @@ namespace Business.Systems
             }
         }
 
-        private void IncrementLevel(ref BusinessLevel businessLevel)
+        private void IncrementLevel(ref Level level)
         { 
-            businessLevel.level++;
-            businessLevel.label.text = businessLevel.level.ToString();
+            level.level++;
+            level.label.text = level.level.ToString();
         }
 
         private void ReduceMoney(ref Balance.Components.Balance balance, ref LevelUpButton levelUpButton)

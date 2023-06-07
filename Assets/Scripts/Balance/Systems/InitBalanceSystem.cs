@@ -1,9 +1,11 @@
 ﻿using Balance.SceneData;
 using Leopotam.Ecs;
 using Saves.Components;
+using Utils;
 
 namespace Balance.Systems
 {
+    /// Creates balance entity and connect it with scene. Also sets loaded money count from file 
     public class InitBalanceSystem : IEcsInitSystem
     {
         private readonly EcsWorld _world = null;
@@ -13,13 +15,12 @@ namespace Balance.Systems
         public void Init()
         {
             var balanceEntity = _world.NewEntity();
+            var gameStateData = _saveDataFilter.Get1(0);
             ref var balance = ref balanceEntity.Get<Components.Balance>();
-            var data = _saveDataFilter.Get1(0);
-            
-            balance.label = _balanceCanvas.label;
-            balance.moneyCount = data.moneyCount;
 
-            balance.label.text = $"Balance: {balance.moneyCount}$";
+            balance.label = _balanceCanvas.label;
+            balance.moneyCount = gameStateData.moneyCount;
+            balance.label.text = Literals.GetBalanceLabel(balance.moneyCount);
         }
     }
 }

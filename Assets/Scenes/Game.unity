@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 70368630}
   - component: {fileID: 70368632}
   m_Layer: 0
-  m_Name: '[btn] Increment'
+  m_Name: '[btn] Increase'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,10 +158,10 @@ RectTransform:
   m_Father: {fileID: 1043851768}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 468.4, y: 895.4999}
-  m_SizeDelta: {x: 92.0698, y: 88.0129}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -71.600006, y: -64.50012}
+  m_SizeDelta: {x: 92.069824, y: 88.01294}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &70368630
 MonoBehaviour:
@@ -280,7 +280,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000116216404}
-  m_SizeDelta: {x: 0, y: 3378.4407}
+  m_SizeDelta: {x: 0, y: 3316.714}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &131015573
 MonoBehaviour:
@@ -421,14 +421,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431cc89d2d68479aa1578f95aa6e027d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScale: 3
   focusCatcher: {fileID: 1833986884}
   balanceCanvas: {fileID: 736615663}
   balanceConfig: {fileID: 11400000, guid: 226aa9fe2802050469ff212310230837, type: 2}
   businessCanvas: {fileID: 945313984}
   businessesConfig: {fileID: 11400000, guid: c4837d1d9a5c29547b6e77de0abcff3c, type: 2}
-  timeScaleConfig: {fileID: 11400000, guid: 95ea1b9858e7fef4689a9000f2672db3, type: 2}
   timeScaleCanvas: {fileID: 1043851772}
+  timeScaleConfig: {fileID: 11400000, guid: 95ea1b9858e7fef4689a9000f2672db3, type: 2}
 --- !u!4 &623601160
 Transform:
   m_ObjectHideFlags: 0
@@ -456,7 +455,7 @@ GameObject:
   - component: {fileID: 734583789}
   - component: {fileID: 734583788}
   m_Layer: 0
-  m_Name: '[Label] TimeScale'
+  m_Name: '[txt] TimeScale'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -707,7 +706,7 @@ GameObject:
   - component: {fileID: 851111555}
   - component: {fileID: 851111554}
   m_Layer: 0
-  m_Name: '[Label] Reduce'
+  m_Name: '[txt] Increase'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1026,7 +1025,7 @@ GameObject:
   - component: {fileID: 970070866}
   - component: {fileID: 970070865}
   m_Layer: 0
-  m_Name: '[Label] Balance'
+  m_Name: '[txt] Balance'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1267,7 +1266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedLabel: {fileID: 734583788}
   reduceButon: {fileID: 1315168844}
-  incrementButon: {fileID: 70368632}
+  increaseButon: {fileID: 70368632}
 --- !u!1 &1076266867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,7 +1279,7 @@ GameObject:
   - component: {fileID: 1076266870}
   - component: {fileID: 1076266869}
   m_Layer: 0
-  m_Name: '[Label] Reduce'
+  m_Name: '[txt] Reduce'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1415,7 +1414,7 @@ GameObject:
   - component: {fileID: 1223425592}
   - component: {fileID: 1223425591}
   m_Layer: 0
-  m_Name: '[Image] Background'
+  m_Name: '[img] Background'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1491,7 +1490,7 @@ GameObject:
   - component: {fileID: 1303863049}
   - component: {fileID: 1303863048}
   m_Layer: 0
-  m_Name: '[Image] Underline'
+  m_Name: '[img] Underline'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1590,10 +1589,10 @@ RectTransform:
   m_Father: {fileID: 1043851768}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 242.10004, y: 895.4999}
-  m_SizeDelta: {x: 92.0698, y: 88.0129}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -297.89996, y: -64.50012}
+  m_SizeDelta: {x: 92.069824, y: 88.01294}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1315168842
 MonoBehaviour:

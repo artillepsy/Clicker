@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace Saves.Utils
 {
+    /// Methods for load and save data
     public static class SaveLoadUtils
     {
+        /// Saves data to file
         public static void Save<T>(T data, string filename)
         {
             var binaryFormatter = new BinaryFormatter();
@@ -15,6 +17,7 @@ namespace Saves.Utils
             fileStream.Close();
         }
 
+        /// Tries to load data from file. If load was unsuccessful, the success flag will be "false"
         public static T Load<T>(out bool success, string filename)
         {
             var path = Application.persistentDataPath + "/" + filename + ".class";

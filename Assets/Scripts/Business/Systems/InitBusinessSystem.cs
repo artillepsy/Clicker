@@ -2,13 +2,14 @@
 using Business.Configs;
 using Business.Flags;
 using Business.SceneData;
-using Constants;
 using Leopotam.Ecs;
 using Saves.Components;
 using UnityEngine;
+using Utils;
 
 namespace Business.Systems
 {
+    /// Creates business and upgrades entities and gives values to them. Uses saved info for initializing
     public class InitBusinessSystem : IEcsInitSystem
     {
         private readonly EcsWorld _world = null;
@@ -19,53 +20,32 @@ namespace Business.Systems
         public void Init()
         {
             var businessCount = _businessesConfig.businesses.Length;
-            var data = _saveDataFilter.Get1(1);
+            var gameStateData = _saveDataFilter.Get1(1);
             
             for (int i = 0; i < businessCount; i++)
             {
-                SpawnBusinessInstance(_businessesConfig.businesses[i], data, i, businessCount);
+                SpawnBusinessInstance(_businessesConfig.businesses[i], gameStateData, i, businessCount);
             }
         }
-
+        
+        /// Instatiates business instance and it's children on scene
         private void SpawnBusinessInstance(BusinessConfig businessConfig, GameStateSaveData data,
-            int currentBusinessIndex, int businessCount)
+            int i, int businessCount)
         {
             var display = Object.Instantiate(_businessesConfig.businessDisplayPrefab, _businessCanvas.businessParent);
             var entity = _world.NewEntity();
             
-            SpawnUpgrades(ref entity, businessConfig, data.businesses[currentBusinessIndex].upgrades, display);
-            InitializeBusinessDisplay(ref entity, display, data.businesses[currentBusinessIndex],
-                businessConfig, currentBusinessIndex, businessCount);
+            SpawnUpgrades(ref entity, _businessesConfig.businesses[i], data.businesses[i].upgrades, display);
+            InitializeBusinessEntity(ref entity, display, data.businesses[i], businessConfig, i, businessCount);
         }
 
-        private void SpawnUpgrades(ref EcsEntity entity, BusinessConfig businessConfig, UpgradeSaveData[] upgradesData,
-            BusinessDisplay display)
-        {
-            var upgradesCount = businessConfig.upgradeConfigs.Length;
-            ref var upgradeContainer = ref entity.Get<UpgradesContainer>();
-            upgradeContainer.upgradeEntities = new EcsEntity[upgradesCount];
-            
-            foreach (Transform child in display.upgradesParent)
-            {
-                Object.Destroy(child.gameObject);
-            }
-
-            for (int i = 0; i < upgradesCount; i++)
-            {
-                var upgradeConfig = businessConfig.upgradeConfigs[i];
-                var upgradeDisplay = Object.Instantiate(_businessesConfig.upgradeDisplayPrefab, display.upgradesParent);
-
-                upgradeContainer.upgradeEntities[i]
-                    = InitializeUpgrade(ref entity, upgradeDisplay, upgradesData[i], upgradeConfig, i);
-            }
-        }
-
-        private void InitializeBusinessDisplay(ref EcsEntity entity, BusinessDisplay display, BusinessSaveData data, 
+        /// Initializes business components by values from config and save
+        private void InitializeBusinessEntity(ref EcsEntity entity, BusinessDisplay display, BusinessSaveData data, 
             BusinessConfig businessConfig, int currentIndex, int amount)
         {
             ref var earnProgressBar = ref entity.Get<EarnProgressBar>();
-            ref var businessLevel = ref entity.Get<BusinessLevel>();
-            ref var businessIndex = ref entity.Get<BusinessIndex>();
+            ref var businessLevel = ref entity.Get<Level>();
+            ref var businessIndex = ref entity.Get<Index>();
             ref var earnTimer = ref entity.Get<EarnTimer>();
             ref var earn = ref entity.Get<Earn>();
             ref var levelUp = ref entity.Get<LevelUpButton>();
@@ -100,8 +80,9 @@ namespace Business.Systems
                 entity.Get<PurchasedMarker>();
             }
         }
-
-        private EcsEntity InitializeUpgrade(ref EcsEntity entity, UpgradeDisplay display, UpgradeSaveData data, 
+        
+        /// Initializes upgrade components by values from config and save
+        private EcsEntity InitializeUpgradeEntity(ref EcsEntity entity, UpgradeDisplay display, UpgradeSaveData data, 
             UpgradeConfig upgradeConfig, int index)
         {
             var upgradeEntity = _world.NewEntity();
@@ -132,6 +113,28 @@ namespace Business.Systems
                 upgrade.costLabel.text = Literals.GetCostLabel(upgrade.cost);
             }
             return upgradeEntity;
+        }
+        
+        /// Instantiates upgrades related to current entity
+        private void SpawnUpgrades(ref EcsEntity entity, BusinessConfig businessConfig, UpgradeSaveData[] upgradesData,
+            BusinessDisplay display)
+        {
+            var upgradesCount = businessConfig.upgradeConfigs.Length;
+            ref var upgradeContainer = ref entity.Get<UpgradesContainer>();
+            upgradeContainer.upgradeEntities = new EcsEntity[upgradesCount];
+            
+            foreach (Transform child in display.upgradesParent)
+            {
+                Object.Destroy(child.gameObject);
+            }
+            for (int i = 0; i < upgradesCount; i++)
+            {
+                var upgradeConfig = businessConfig.upgradeConfigs[i];
+                var upgradeDisplay = Object.Instantiate(_businessesConfig.upgradeDisplayPrefab, display.upgradesParent);
+
+                upgradeContainer.upgradeEntities[i]
+                    = InitializeUpgradeEntity(ref entity, upgradeDisplay, upgradesData[i], upgradeConfig, i);
+            }
         }
     }
 }

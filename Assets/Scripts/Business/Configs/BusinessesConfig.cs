@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Business.Configs
 {
+    /// Container for all businesses and their upgrades. Also contains prefabs to spawn
     [CreateAssetMenu]
     public class BusinessesConfig : ScriptableObject
     {

@@ -1,21 +1,22 @@
 ﻿using Balance.Configs;
 using Business.Configs;
-using Constants;
 using Leopotam.Ecs;
 using Saves.Components;
 using Saves.Utils;
 using TimeScale.Configs;
+using Utils;
 
 namespace Saves.Systems
 {
-    public class InitSaveDataSystem : IEcsInitSystem
+    /// Loads gameState data at start of the game
+    public class InitSaveDataLoadSystem : IEcsInitSystem
     {
         private readonly EcsWorld _world = null;
         private readonly BusinessesConfig _businessesConfig = null;
         private readonly BalanceConfig _balanceConfig = null;
         private readonly TimeScaleConfig _timeScaleConfig = null;
 
-
+        /// Creates new Save Data entity and gets info from file
         public void Init()
         {
             var saveEntity = _world.NewEntity();
@@ -26,9 +27,9 @@ namespace Saves.Systems
             {
                 InitSaveData(ref data);
             }
-            
         }
 
+        /// Fills data fields by values from config if it's empty
         private void InitSaveData(ref GameStateSaveData data)
         {
             var businessCount = _businessesConfig.businesses.Length;

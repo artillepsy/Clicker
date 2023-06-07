@@ -1,5 +1,6 @@
-﻿namespace Constants
+﻿namespace Utils
 {
+    /// Container for constants and methods which work with strings 
     public static class Literals
     {
         public const string SaveFileName = "Saves";

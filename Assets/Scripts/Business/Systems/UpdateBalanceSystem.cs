@@ -1,10 +1,10 @@
-﻿using Business.Flags;
-using Business.Reactive;
-using Constants;
+﻿using Business.Reactive;
 using Leopotam.Ecs;
+using Utils;
 
 namespace Business.Systems
 {
+    /// Changes money count after each earn tick
     public class UpdateBalanceSystem : IEcsRunSystem
     {
         private readonly EcsFilter<Balance.Components.Balance, EarnedMoneyEvent> _balanceFilter = null;

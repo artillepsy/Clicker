@@ -2,6 +2,7 @@
 
 namespace TimeScale.Configs
 {
+    /// Config which contains start time scale
     [CreateAssetMenu]
     public class TimeScaleConfig : ScriptableObject
     {

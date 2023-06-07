@@ -1,34 +1,36 @@
 ﻿using Business.Components;
 using Business.Flags;
-using Constants;
 using Leopotam.Ecs;
 using Saves.Components;
 using Saves.SceneData;
 using Saves.Utils;
+using Utils;
 
 namespace Saves.Systems
 {
+    /// Saves game state if app is in unfocus
     public class SaveSystem : IEcsInitSystem, IEcsDestroySystem
     {
         private readonly ApplicationFocusCatcher _focusCatcher = null;
         private readonly EcsFilter<GameStateSaveData> _saveDataFilter = null;
         private readonly EcsFilter<TimeScale.Components.TimeScale> _timeScaleFilter = null;
         private readonly EcsFilter<Balance.Components.Balance> _balanceFilter = null;
-        private readonly EcsFilter<BusinessLevel, EarnTimer, UpgradesContainer, BusinessIndex> _businessesfilter = null;
+        private readonly EcsFilter<Level, EarnTimer, UpgradesContainer, Index> _businessesfilter = null;
         
+        /// Subscribes on unfocus event at the start
         public void Init()
         {
             _focusCatcher.OnApplicationUnfocused += OnUnfocused;
         }
 
+        /// Unsubscribes from unfocus event at the destroy
         public void Destroy()
         {
             _focusCatcher.OnApplicationUnfocused -= OnUnfocused;
         }
-
-        private void OnUnfocused() => UpdateSaveData();
-
-        private void UpdateSaveData()
+        
+        /// Gets all data from needed components and saves it to file
+        private void OnUnfocused()
         {
             ref var data = ref _saveDataFilter.Get1(0);
             var timeScale = _timeScaleFilter.Get1(0);
