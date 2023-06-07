@@ -1,6 +1,6 @@
-﻿using Balance.Configs;
-using Balance.SceneData;
+﻿using Balance.SceneData;
 using Leopotam.Ecs;
+using Saves.Components;
 
 namespace Balance.Systems
 {
@@ -8,15 +8,16 @@ namespace Balance.Systems
     {
         private readonly EcsWorld _world = null;
         private readonly BalanceCanvas _balanceCanvas = null;
-        private readonly BalanceConfig _balanceConfig = null;
+        private readonly EcsFilter<GameStateSaveData> _saveDataFilter = null;
         
         public void Init()
         {
             var balanceEntity = _world.NewEntity();
             ref var balance = ref balanceEntity.Get<Components.Balance>();
-
+            var data = _saveDataFilter.Get1(0);
+            
             balance.label = _balanceCanvas.label;
-            balance.moneyCount = _balanceConfig.startMoneyCount;
+            balance.moneyCount = data.moneyCount;
 
             balance.label.text = $"Balance: {balance.moneyCount}$";
         }

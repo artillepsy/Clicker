@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Balance.Configs;
+﻿using Balance.Configs;
 using Business.Configs;
 using Constants;
 using Leopotam.Ecs;
