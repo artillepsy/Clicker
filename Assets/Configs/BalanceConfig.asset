@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1df819469e3f14a9fa351e8a7cf404, type: 3}
   m_Name: BalanceConfig
   m_EditorClassIdentifier: 
-  businessEntityPrefab: {fileID: 0}
-  startMoneyCount: 10
+  startMoneyCount: 0
