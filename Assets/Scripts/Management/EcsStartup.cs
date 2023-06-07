@@ -6,14 +6,17 @@ using Business.Reactive;
 using Business.SceneData;
 using Business.Systems;
 using Leopotam.Ecs;
+using Saves.SceneData;
+using Saves.Systems;
 using UnityEngine;
 
-namespace Core.Management
+namespace Management
 {
     public class EcsStartup : MonoBehaviour
     {
         public float timeScale = 3f;
-        
+
+        public ApplicationFocusCatcher focusCatcher;        
         public BalanceCanvas balanceCanvas;
         public BalanceConfig balanceConfig;
         
@@ -38,14 +41,16 @@ namespace Core.Management
         private void AddSystems()
         {
             _systems
-                .Add(new BalanceInitSystem())
-                .Add(new BusinessInitSystem())
-                .Add(new LevelUpButtonsInitSystem())
-                .Add(new UpgradeButtonsInitSystem())
+                .Add(new InitSaveDataSystem())
+                .Add(new InitBalanceSystem())
+                .Add(new InitBusinessSystem())
+                .Add(new InitLevelUpButtonsSystem())
+                .Add(new InitUpgradeButtonsSystem())
                 .Add(new BusinessEarnSystem())
                 .Add(new UpdateLevelSystem())
                 .Add(new UpdateBalanceSystem())
                 .Add(new UpgradePurchaseSystem())
+                .Add(new SaveSystem())
                 ;
         }
 
@@ -56,6 +61,7 @@ namespace Core.Management
                 .Inject(balanceConfig)
                 .Inject(businessCanvas)
                 .Inject(businessesConfig)
+                .Inject(focusCatcher)
                 ;
             
             _systems.Init();

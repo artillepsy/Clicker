@@ -1,22 +1,17 @@
 ﻿using Business.Components;
 using Business.Flags;
-using Core.Constants;
+using Constants;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Core.Utils
+namespace Business.Utils
 {
-    public static class Utils
+    public static class CalculationUtils
     {
-        public static void UpdateUpgradeButtonInteractable(ref Upgrade upgrade, ref BusinessLevel businessLevel)
+        public static void UpdateLevelCost(ref LevelUpButton levelUpButton, int level)
         {
-            upgrade.upgradeButton.interactable = businessLevel.level > 0;
-        }
-        
-        public static void UpdateLevelCost(ref LevelUp levelUp, int level)
-        {
-             levelUp.cost = levelUp.startCost * (level + 1);
-             levelUp.levelCostLabel.text = Literals.GetCostLabel(levelUp.cost);
+             levelUpButton.cost = levelUpButton.startCost * (level + 1);
+             levelUpButton.levelCostLabel.text = Literals.GetCostLabel(levelUpButton.cost);
         }
 
         public static void UpdateEarn(ref EcsEntity entity, ref Earn earn, ref BusinessLevel businessLevel)
@@ -31,9 +26,8 @@ namespace Core.Utils
             
             foreach (var entity in upgradeContainer.upgradeEntities)
             {
-                Debug.Log($"entity: {entity}");
                 if (!entity.Has<PurchasedMarker>()) continue;
-                totalMult += entity.Get<Upgrade>().earnMultiplier / 100f;
+                totalMult += entity.Get<UpgradeButton>().earnMultiplier / 100f;
             }
             return Mathf.RoundToInt(level * startEarn * totalMult);
         }

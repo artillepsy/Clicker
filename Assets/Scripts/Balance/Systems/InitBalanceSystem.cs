@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace Balance.Systems
 {
-    public class BalanceInitSystem : IEcsInitSystem
+    public class InitBalanceSystem : IEcsInitSystem
     {
         private readonly EcsWorld _world = null;
         private readonly BalanceCanvas _balanceCanvas = null;

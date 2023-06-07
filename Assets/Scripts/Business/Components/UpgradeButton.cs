@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 namespace Business.Components
 {
-    public struct Upgrade
+    public struct UpgradeButton
     {
         public EcsEntity businessEntity;
         
         public TextMeshProUGUI costLabel;
         public TextMeshProUGUI earnMultiplierLabel;
         
-        public Button upgradeButton;
+        public Button button;
         
         public int earnMultiplier;
         public int cost;

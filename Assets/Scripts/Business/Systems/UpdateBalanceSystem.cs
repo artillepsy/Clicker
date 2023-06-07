@@ -1,6 +1,6 @@
 ﻿using Business.Flags;
 using Business.Reactive;
-using Core.Constants;
+using Constants;
 using Leopotam.Ecs;
 
 namespace Business.Systems

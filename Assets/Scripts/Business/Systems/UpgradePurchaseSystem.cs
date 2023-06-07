@@ -1,15 +1,14 @@
 ﻿using Business.Components;
 using Business.Flags;
 using Business.Reactive;
-using Core.Constants;
-using Core.Utils;
+using Constants;
 using Leopotam.Ecs;
 
 namespace Business.Systems
 {
     public class UpgradePurchaseSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<Upgrade, PurchaseUpgradeRequest> _filter = null;
+        private readonly EcsFilter<UpgradeButton, PurchaseUpgradeRequest> _filter = null;
         
         public void Run()
         {
@@ -30,14 +29,14 @@ namespace Business.Systems
             upgradeEntity.Get<PurchasedMarker>();
             
             upgrade.costLabel.text = Literals.GetPurchasedLabel();
-            upgrade.upgradeButton.onClick.RemoveAllListeners();
-            upgrade.upgradeButton.interactable = false;
+            upgrade.button.onClick.RemoveAllListeners();
+            upgrade.button.interactable = false;
         }
 
         private void UpdateEarn(int i)
         {
             ref var entity = ref _filter.Get1(i).businessEntity;
-            Utils.UpdateEarn(ref entity, ref entity.Get<Earn>(), ref entity.Get<BusinessLevel>());
+            Utils.CalculationUtils.UpdateEarn(ref entity, ref entity.Get<Earn>(), ref entity.Get<BusinessLevel>());
         }
     }
 }
