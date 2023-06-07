@@ -17,31 +17,49 @@ namespace Business.Systems
         
         public void Init()
         {
-            for (int i = 0; i < _businessesConfig.businesses.Count; i++)
+            var businessCount = _businessesConfig.businesses.Length;
+            
+            for (int i = 0; i < businessCount; i++)
             {
-                SpawnBusinessInstance(_businessesConfig.businesses[i], i+1, _businessesConfig.businesses.Count);
+                SpawnBusinessInstance(_businessesConfig.businesses[i], i+1, businessCount);
             }
         }
 
-        private void SpawnBusinessInstance(BusinessConfig businessConfig, int businessCurrentIndex, int businessAmount)
+        private void SpawnBusinessInstance(BusinessConfig businessConfig, int currentBusinessIndex, int businessCount)
         {
             var display = Object.Instantiate(_businessesConfig.businessDisplayPrefab, _businessCanvas.businessParent);
             var entity = _world.NewEntity();
-            ref var upgradeContainer = ref entity.Get<UpgradeContainer>();
-
-            upgradeContainer.upgradeEntity1 = InitializeUpgrade(ref entity, display.upgrade1Display, businessConfig.upgrade1Config);
-            upgradeContainer.upgradeEntity2 = InitializeUpgrade(ref entity, display.upgrade2Display, businessConfig.upgrade2Config);
             
-            Utils.UpdateUpgradeButtonInteractable(
-                ref upgradeContainer.upgradeEntity1.Get<Upgrade>(), ref entity.Get<BusinessLevel>());
-            
-            Utils.UpdateUpgradeButtonInteractable(
-                ref upgradeContainer.upgradeEntity2.Get<Upgrade>(), ref entity.Get<BusinessLevel>());
-            
-            InitializeBusinessDisplay(entity, display, businessConfig, businessCurrentIndex, businessAmount);
+            SpawnUpgrades(ref entity, businessConfig, display);
+            InitializeBusinessDisplay(ref entity, display, businessConfig, currentBusinessIndex, businessCount);
         }
 
-        private void InitializeBusinessDisplay(EcsEntity entity, BusinessDisplay display, BusinessConfig businessConfig, int currentIndex, int amount)
+        private void SpawnUpgrades(ref EcsEntity entity, BusinessConfig businessConfig,
+            BusinessDisplay display)
+        {
+            var upgradesCount = businessConfig.upgradeConfigs.Length;
+            ref var upgradeContainer = ref entity.Get<UpgradeContainer>();
+            upgradeContainer.upgradeEntities = new EcsEntity[upgradesCount];
+            foreach (Transform child in display.upgradesParent)
+            {
+                Object.Destroy(child.gameObject);
+            }
+
+            for (int i = 0; i < upgradesCount; i++)
+            {
+                var upgradeConfig = businessConfig.upgradeConfigs[i];
+                var upgradeDisplay = Object.Instantiate(_businessesConfig.upgradeDisplayPrefab, display.upgradesParent);
+
+                upgradeContainer.upgradeEntities[i]
+                    = InitializeUpgrade(ref entity, upgradeDisplay, upgradeConfig);
+
+                Utils.UpdateUpgradeButtonInteractable(
+                    ref upgradeContainer.upgradeEntities[i].Get<Upgrade>(), ref entity.Get<BusinessLevel>());
+            }
+        }
+
+        private void InitializeBusinessDisplay(ref EcsEntity entity, BusinessDisplay display, 
+            BusinessConfig businessConfig, int currentIndex, int amount)
         {
             ref var earnProgressBar = ref entity.Get<EarnProgressBar>();
             ref var businessLevel = ref entity.Get<BusinessLevel>();
@@ -73,7 +91,6 @@ namespace Business.Systems
 
             earnProgressBar.fillImage = display.progressBarImage;
             earnProgressBar.fillImage.fillAmount = earnTimer.currentTime / earnTimer.earnTime;
-
 
             if (businessConfig.startLevel > 0)
             {

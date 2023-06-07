@@ -13,69 +13,65 @@ MonoBehaviour:
   m_Name: BusinessesConfig
   m_EditorClassIdentifier: 
   businessDisplayPrefab: {fileID: 642349017306277802, guid: b0e4b6120343d3a4fbe7b5eeee102c23, type: 3}
+  upgradeDisplayPrefab: {fileID: 5865064239138437451, guid: 84cb19ae6668cdf408771862993ffadc, type: 3}
   businesses:
   - name: Business 1
     startLevel: 1
     earnTime: 3
     startEarnCount: 3
     levelUpCost: 3
-    upgrade1Config:
-      name: Upgrade 1
-      buyCost: 50
-      earnMultiplier: 50
-    upgrade2Config:
-      name: Upgrade 2
-      buyCost: 400
-      earnMultiplier: 100
+    upgradeConfigs:
+    - name: Upgrade
+      buyCost: 0
+      earnMultiplier: 0
+    - name: Upgrade
+      buyCost: 0
+      earnMultiplier: 0
   - name: Business 2
     startLevel: 0
     earnTime: 6
     startEarnCount: 40
     levelUpCost: 40
-    upgrade1Config:
-      name: Upgrade 1
-      buyCost: 1200
-      earnMultiplier: 100
-    upgrade2Config:
-      name: Upgrade 2
-      buyCost: 4000
-      earnMultiplier: 200
+    upgradeConfigs:
+    - name: Upgrade
+      buyCost: 0
+      earnMultiplier: 0
+    - name: Upgrade
+      buyCost: 0
+      earnMultiplier: 0
   - name: Business 3
     startLevel: 0
     earnTime: 10
     startEarnCount: 200
     levelUpCost: 200
-    upgrade1Config:
-      name: Upgrade 1
-      buyCost: 6000
-      earnMultiplier: 100
-    upgrade2Config:
-      name: Upgrade 2
-      buyCost: 20000
-      earnMultiplier: 150
+    upgradeConfigs:
+    - name: Upgrade
+      buyCost: 0
+      earnMultiplier: 0
+    - name: Upgrade
+      buyCost: 0
+      earnMultiplier: 0
   - name: Business 4
     startLevel: 0
     earnTime: 17
     startEarnCount: 1000
     levelUpCost: 1000
-    upgrade1Config:
-      name: Upgrade 1
-      buyCost: 15000
-      earnMultiplier: 100
-    upgrade2Config:
-      name: Upgrade 2
-      buyCost: 50000
-      earnMultiplier: 200
+    upgradeConfigs:
+    - name: Upgrade
+      buyCost: 0
+      earnMultiplier: 0
+    - name: Upgrade
+      buyCost: 0
+      earnMultiplier: 0
   - name: Business 5
     startLevel: 0
     earnTime: 30
     startEarnCount: 5000
     levelUpCost: 5000
-    upgrade1Config:
-      name: Upgrade 1
-      buyCost: 100000
-      earnMultiplier: 200
-    upgrade2Config:
-      name: Upgrade 2
-      buyCost: 500000
-      earnMultiplier: 400
+    upgradeConfigs:
+    - name: Upgrade
+      buyCost: 0
+      earnMultiplier: 0
+    - name: Upgrade
+      buyCost: 0
+      earnMultiplier: 0

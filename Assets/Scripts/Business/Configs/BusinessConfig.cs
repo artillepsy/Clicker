@@ -10,7 +10,6 @@ namespace Business.Configs
         public int startEarnCount;
         public int levelUpCost;
 
-        public UpgradeConfig upgrade1Config = new UpgradeConfig() {name = "Upgrade 1"};
-        public UpgradeConfig upgrade2Config = new UpgradeConfig() {name = "Upgrade 2"};
+        public UpgradeConfig[] upgradeConfigs = new UpgradeConfig[2];
     }
 }

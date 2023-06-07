@@ -19,9 +19,12 @@ namespace Business.Systems
                 ref var levelUp = ref _businessesFilter.Get1(i);
                 ref var upgradeContainer = ref _businessesFilter.Get2(i);
                 ref var businessLevel = ref _businessesFilter.Get3(i);
-                
-                Utils.UpdateUpgradeButtonInteractable(ref upgradeContainer.upgradeEntity1.Get<Upgrade>(), ref  businessLevel);
-                Utils.UpdateUpgradeButtonInteractable(ref upgradeContainer.upgradeEntity2.Get<Upgrade>(), ref  businessLevel);
+
+                foreach (var entity in upgradeContainer.upgradeEntities)
+                {
+                    var upgrade = entity.Get<Upgrade>();
+                    Utils.UpdateUpgradeButtonInteractable(ref upgrade, ref  businessLevel);
+                }
                 levelUp.levelUpButton.onClick.AddListener(delegate { OnClickLevelUp(i); });
             }
         }

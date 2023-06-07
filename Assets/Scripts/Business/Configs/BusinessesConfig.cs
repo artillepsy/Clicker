@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Business.SceneData;
+﻿using Business.SceneData;
 using UnityEngine;
 
 namespace Business.Configs
@@ -8,6 +7,8 @@ namespace Business.Configs
     public class BusinessesConfig : ScriptableObject
     {
         public BusinessDisplay businessDisplayPrefab;
-        public List<BusinessConfig> businesses;
+        public UpgradeDisplay upgradeDisplayPrefab;
+        [Space]
+        public BusinessConfig[] businesses;
     }
 }
